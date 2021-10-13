@@ -1,39 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Reaction Page</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
-<body>
-<div class="container">
-  <h2><b>Rohith Sai Ganguru - <i>reaction timer</i></b></h2>
-  <p id="target">Your time</p>
-  <p id="countdown">Count</p>
-  <button type="button" class="btn btn-primary" onclick="startTime()">Start Timer</button>
-  <button type="button" class="btn btn-primary" onclick="recordReact()">React Now</button>
-</div>
-  <script> 
-  myTime=undefined;
-  function recordReact() {
-    myTime = Date.now();
-    console.log(myTime);
-  }
-//     setTimeout(function(){
-//       document.getElementById('target').style.color = "red"
-//     }, 3000)
-//   }
 
-//   function buttonPress2() {
-//     setTimeout(()=>{
-//       document.getElementById('target').style.color = "red"
-//     }, 3000)
-//   }
-  </script>
+<head>
+    <title>Reaction Page</title>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container" style="text-align: center;">
+        <h2 style="color:red;"><b>Rohith Sai Ganguru - <i>reaction timer</i></b></h2>
+        <h2><p id="target">Your time</p></h2>
+        <h2> <p><img src="timer.png"/><p id="countdown">Count</p></p></h2>
+        <button type="button" class="btn btn-success" onclick="startTime()">Start Timer</button>
+        <button type="button" class="btn btn-primary" onclick="recordReact()">React Now</button>
+    </div>
+    <script>
+        myTime = undefined;
+        function recordReact() {
+            myTime = Date.now();
+            console.log(myTime);
+        }
+        function startTime() {
+            for (let i = 0; i <= 3; i++) {
+                setTimeout(() => {
+                    document.getElementById("countdown").innerHTML = i;
+                },(3 - i) * 1000)
+            }
+            setTimeout(()=> {
+                if(myTime==undefined)
+                {
+                    document.getElementById("target").innerHTML = "Too Slow";
+                }
+                else{
+                    now=Date.now();
+                    differnce=now-myTime
+                    document.getElementById("target").innerHTML = "Time was " + differnce + " ms"
+                    myTime = undefined
+                }
+            },3000)
+        }
+    </script>
 
 </body>
+
 </html>
