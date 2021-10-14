@@ -35,6 +35,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1><i>Rohith Sai Ganguru builds a stack</i></h1>
@@ -51,6 +52,7 @@
         <button id="push" onclick="makeNewDiv()" class="btn btn-primary">Push value</button>
         <button id="pop" onclick="popItem()" class="btn btn-danger">Pop</button>
         <button id="zap" onclick="zap()" class="btn btn-warning">Zap values</button>
+        <button id="unique" onclick="removeDups()" class="btn btn-success">Unique</button>
     </div>
 </body>
 <script>
@@ -64,20 +66,35 @@
         document.getElementById('target').appendChild(element)
     }
     function popItem() {
-        stackItems = document.getElementsByClassName("stack")
-		length = stackItems.length
-		if (length > 0)
-			stackItems[length - 1].remove()
+        stackItems = document.getElementsByClassName('stack')
+        length = stackItems.length
+        if (stackItems != undefined && length > 0)
+            stackItems[length - 1].remove()
     }
     function zap() {
-        stackItems=document.getElementsByClassName("stack");
-        value=document.getElementById("textBox").value; 
+        value = document.getElementById("textBox").value;
+        stackItems = document.getElementsByClassName('stack');
         if (stackItems != undefined && stackItems.length > 0) {
             for (let i = 0; i < stackItems.length; i++) {
                 element = stackItems[i].innerHTML;
                 if (element == value) {
                     console.log(stackItems[i])
                     stackItems[i].remove();
+                    i--;
+                }
+            }
+        }
+    }
+    function removeDups() {
+        stackItems = document.getElementsByClassName('stack');
+        for (let i = 0; i < stackItems.length; i++) {
+            element = stackItems[i].innerHTML;
+            for (let j = i + 1; j < stackItems.length; j++) {
+                element1 = stackItems[j].innerHTML;
+                if (element == element1) {
+                    console.log(stackItems[j])
+                    stackItems[j].remove();
+                    j--;
                     i--;
                 }
             }

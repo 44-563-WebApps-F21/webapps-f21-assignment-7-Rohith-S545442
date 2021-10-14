@@ -27,10 +27,11 @@
             console.log(myTime);
         }
         function startTime() {
-            for (let i = 0; i <= 3; i++) {
+            let count = Math.round(Math.random() * (10 - 2) + 2);
+            for (let i = 0; i <= count; i++) {
                 setTimeout(() => {
                     document.getElementById("countdown").innerHTML = i;
-                },(3 - i) * 1000)
+                },(count -1 - i) * 1000);
             }
             setTimeout(()=> {
                 if(myTime==undefined)
@@ -43,7 +44,7 @@
                     document.getElementById("target").innerHTML = "Time was " + differnce + " ms"
                     myTime = undefined
                 }
-            },3000)
+            },(count - 1) * 1000);
         }
     </script>
 
